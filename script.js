@@ -24,40 +24,34 @@ const requests = [
 // 4-1-1 доступность книг
 function isBookAvailable(books, needBookId) {
     return books.find(book => book.id == needBookId).isAvailable
-}
+};
 
 //4-1-2 поиск книг по автору
 function findBooksByAuthor(books, needAuthor,) {
     books.forEach(book => {
         book.author = book.author.toLowerCase()
     })
-    return books.filter((book) => book.author.includes(needAuthor.toLowerCase()))
-    // return books
-    //     .forEach(book => {
-    //     book.author = book.author.toLowerCase()
-    // })
-    //     .filter((book) => book.author.includes(needAuthor.toLowerCase()))
-}
-console.log(findBooksByAuthor(books, 'толстой'))
+    return books.filter(book => book.author.includes(needAuthor.toLowerCase()))
+};
 
 //4-1-3 обработка запросов на выдачу книг
-function processRequests (requests,books){
-    requests.map((request)=>{
-      let needBook= books.find((book)=> book.id===request.bookId);
-      if(needBook.isAvailable){
-        alert(`Книга ${needBook.title} выдана пользователю`);
-        needBook.isAvailable=false;
-      } else{
-        alert(`Книга ${needBook.title} занята`);
-      }
+function processRequests(requests, books) {
+    requests.map((request) => {
+        let needBook = books.find((book) => book.id === request.bookId);
+        if (needBook.isAvailable) {
+            alert(`Книга ${needBook.title} выдана пользователю`);
+            needBook.isAvailable = false;
+        } else {
+            alert(`Книга ${needBook.title} занята`);
+        }
     })
-}
+};
 
 //4-1-4 возврат книги
-function returnBook (books,needBookId) {
-   const needBook= books.find((book)=>book.id===needBookId);
-    needBook.isAvailable=true;
+function returnBook(books, needBookId) {
+    const needBook = books.find((book) => book.id === needBookId);
+    needBook.isAvailable = true;
     alert(`Книга ${needBook.title} возвращена в библиотеку`)
-}
+};
 
 
